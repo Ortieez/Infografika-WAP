@@ -79,3 +79,11 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+.ayu-dark {
+  @apply !bg-secondary;
+}
+
+* {
+  scroll-behavior: smooth;
+}
