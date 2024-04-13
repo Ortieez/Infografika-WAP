@@ -94,114 +94,122 @@ export default function IndexPage() {
   }
 
   return (
-    <main>
-      <div className="h-svh">
-        <section
-          className="flex h-[80svh] w-full flex-col flex-wrap content-center justify-center"
-          id="top"
-        >
-          <div className="text-center">
-            <h1 className="text-8xl font-bold">Github CLI</h1>
-            <p className="mt-4 text-lg">
-              Best tool for productivity with Github
-            </p>
-          </div>
+    <div>
+      <main className="hidden md:block">
+        <div className="h-svh">
+          <section
+            className="flex h-[80svh] w-full flex-col flex-wrap content-center justify-center"
+            id="top"
+          >
+            <div className="text-center">
+              <h1 className="text-8xl font-bold">Github CLI</h1>
+              <p className="mt-4 text-lg">
+                Best tool for productivity with Github
+              </p>
+            </div>
 
-          {loadingCode ? (
-            <Skeleton className="mt-5 flex h-[360px] items-center justify-center rounded-md bg-secondary">
-              Loading codeblock
-            </Skeleton>
-          ) : (
-            <div>
-              <div className="mt-5 flex w-full flex-col items-center justify-center gap-4">
-                <p className="rounded-xl bg-secondary p-5">
-                  $ {names[currentIndex].command}
-                </p>
-                <p>{names[currentIndex].description}</p>
+            {loadingCode ? (
+              <Skeleton className="mt-5 flex h-[360px] items-center justify-center rounded-md bg-secondary">
+                Loading codeblock
+              </Skeleton>
+            ) : (
+              <div>
+                <div className="mt-5 flex w-full flex-col items-center justify-center gap-4">
+                  <p className="rounded-xl bg-secondary p-5">
+                    $ {names[currentIndex].command}
+                  </p>
+                  <p>{names[currentIndex].description}</p>
+                </div>
+                <div className="mt-5 h-[360px]  rounded-md bg-secondary p-5">
+                  <div dangerouslySetInnerHTML={code} />
+                </div>
+                <div className="mt-5 flex flex-row gap-4">
+                  <Button
+                    variant={"outline"}
+                    onClick={() => switchCode(currentIndex - 1)}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    variant={"outline"}
+                    onClick={() => switchCode(currentIndex + 1)}
+                  >
+                    Next
+                  </Button>
+                </div>
               </div>
-              <div className="mt-5 h-[360px]  rounded-md bg-secondary p-5">
-                <div dangerouslySetInnerHTML={code} />
-              </div>
-              <div className="mt-5 flex flex-row gap-4">
-                <Button
-                  variant={"outline"}
-                  onClick={() => switchCode(currentIndex - 1)}
-                >
-                  Previous
-                </Button>
-                <Button
-                  variant={"outline"}
-                  onClick={() => switchCode(currentIndex + 1)}
-                >
-                  Next
-                </Button>
+            )}
+          </section>
+
+          <div className="flex w-full items-center justify-center">
+            <ArrowDownCircle className="mt-5 size-10 animate-bounce text-primary" />
+          </div>
+        </div>
+
+        <Separator />
+
+        <section
+          className="mt-10 flex flex-col items-center justify-center gap-4"
+          id="features"
+        >
+          <h1 className="mb-10 p-5 text-6xl font-bold">
+            Welcome terminal, bye bye browser.
+          </h1>
+
+          <h2 className="text-6xl font-bold">Features</h2>
+          <p className="text-lg">Some of the features of Github CLI</p>
+          <p className="text-lg">
+            More info at
+            <Button variant={"link"}>
+              <Link href="https://cli.github.com/manual/gh">github docs</Link>
+            </Button>
+            .
+          </p>
+
+          <div className="mt-5 grid grid-cols-1 gap-10">
+            <div className="flex flex-col items-center justify-center gap-4">
+              <h3 className="p-5 text-center text-4xl font-bold">
+                Make your workflow easier
+              </h3>
+              <div className="grid grid-cols-3 gap-5 p-6">
+                <Button variant={"outline"}>Issue management</Button>
+                <Button variant={"outline"}>Pull request management</Button>
+                <Button variant={"outline"}>Repo management</Button>
               </div>
             </div>
-          )}
+            <div className="flex flex-col items-center justify-center gap-4">
+              <h3 className="p-5 text-center text-4xl font-bold">
+                Scripting is the way
+              </h3>
+              <div className="grid grid-cols-3 gap-5 p-6">
+                <Button variant={"outline"}>Integrate shell</Button>
+                <Button variant={"outline"}>Script github actions</Button>
+                <Button variant={"outline"}>Script github pages</Button>
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center gap-4">
+              <h3 className="p-5 text-center text-4xl font-bold">
+                AI is the new partner
+              </h3>
+              <div className="grid grid-cols-3 gap-5 p-6">
+                <Button variant={"outline"}>Automated testing</Button>
+                <Button variant={"outline"}>Predictive typing</Button>
+                <Button variant={"outline"}>Integration with AI tools</Button>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <div className="flex w-full items-center justify-center">
-          <ArrowDownCircle className="mt-5 size-10 animate-bounce text-primary" />
-        </div>
-      </div>
-
-      <Separator />
-
-      <section
-        className="mt-10 flex flex-col items-center justify-center gap-4"
-        id="features"
-      >
-        <h1 className="mb-10 p-5 text-6xl font-bold">
-          Welcome terminal, bye bye browser.
-        </h1>
-
-        <h2 className="text-6xl font-bold">Features</h2>
-        <p className="text-lg">Some of the features of Github CLI</p>
-        <p className="text-lg">
-          More info at
-          <Button variant={"link"}>
-            <Link href="https://cli.github.com/manual/gh">github docs</Link>
-          </Button>
-          .
+        <footer className="mt-10 flex w-full items-center justify-center bg-primary p-5">
+          <span className="text-secondary">Made by Adam Lipert, 2024</span>
+        </footer>
+      </main>
+      <main className=" hidden h-screen w-screen items-center justify-center max-md:flex">
+        <p className="p-5 text-center text-2xl">
+          You are on a phone, lmao. Use computer or a tablet to view this page
+          :)
         </p>
-
-        <div className="mt-5 grid grid-cols-1 gap-10">
-          <div className="flex flex-col items-center justify-center gap-4">
-            <h3 className="p-5 text-center text-4xl font-bold">
-              Make your workflow easier
-            </h3>
-            <div className="grid grid-cols-3 gap-5 p-6">
-              <Button variant={"outline"}>Issue management</Button>
-              <Button variant={"outline"}>Pull request management</Button>
-              <Button variant={"outline"}>Repo management</Button>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-center gap-4">
-            <h3 className="p-5 text-center text-4xl font-bold">
-              Scripting is the way
-            </h3>
-            <div className="grid grid-cols-3 gap-5 p-6">
-              <Button variant={"outline"}>Integrate shell</Button>
-              <Button variant={"outline"}>Script github actions</Button>
-              <Button variant={"outline"}>Script github pages</Button>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-center gap-4">
-            <h3 className="p-5 text-center text-4xl font-bold">
-              AI is the new partner
-            </h3>
-            <div className="grid grid-cols-3 gap-5 p-6">
-              <Button variant={"outline"}>Autoamted testing</Button>
-              <Button variant={"outline"}>Predictive typing</Button>
-              <Button variant={"outline"}>Integration with AI tools</Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="mt-10 flex w-full items-center justify-center bg-primary p-5">
-        <span className="text-secondary">Made by Adam Lipert, 2024</span>
-      </footer>
-    </main>
+      </main>
+    </div>
   )
 }
